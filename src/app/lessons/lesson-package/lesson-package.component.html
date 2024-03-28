@@ -1,0 +1,89 @@
+<div class="row" style="padding: 10px;">
+  <div class="card-body">
+    <h5>{{currentLesson?.lesson_name}} Yeni Paket Formu</h5>
+    <form (ngSubmit)="create()" accept-charset="UTF-8">
+      <div class="form-group">
+        <label for="participant_type_id">Katılımcı Türü:</label>
+        <select class="form-control" id="participant_type_id" name="participant_type_id" (change)="setParticipantTypeId($event)" [(ngModel)]="lessonPackage!.participant_type_id">
+          <option value="{{item._id}}" *ngFor="let item of participantTypes">{{item.participant_type_name}}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="package_name">Paketin Adı:</label>
+        <input type="text" name="package_name" id="package_name" [(ngModel)]="lessonPackage!.package_name" class="form-control text-small" 
+        placeholder="Paketin adınız yazınız" required>
+      </div>
+      <div class="form-group">
+        <label for="seance_count">Seans Sayısı:</label>
+        <input type="number" name="seance_count" id="seance_count" [(ngModel)]="lessonPackage!.seance_count" class="form-control text-small" 
+        placeholder="Seans sayısını yazınız">
+      </div>
+      <div class="form-group">
+        <label for="seance_price">Seans Ücreti:</label>
+        <input type="number" name="seance_price" id="seance_price" (input)="setPriceWithSeanceCount($event)" [(ngModel)]="lessonPackage!.seance_price" class="form-control text-small" 
+        placeholder="Seans ücretini yazınız">
+      </div>
+      <div class="form-group">
+        <label for="discount">Paket İndirimi: (İndirim % olarak ve otomatik hesaplanır)</label>
+        <input type="number" name="discount" (input)="setDiscount($event)" id="discount" [(ngModel)]="lessonPackage!.discount" class="form-control text-small" 
+        placeholder="Paket indirimi varsa yazınız">
+      </div>
+      <div class="form-group">
+        <label for="package_price">Paket Ücreti: (Otomatik hesaplanır (Seans Sayısı * Seans Ücreti ve varsa %indirim) fakat seans ücretini 0 yaparak istediğiniz bir tutar da yazabilirsiniz)</label>
+        <input type="number" name="package_price" id="package_price" [(ngModel)]="lessonPackage!.package_price" class="form-control text-small" 
+        placeholder="Paket ücretini yazınız">
+      </div>
+      <div class="form-group">
+        <label for="max_capacity">Maksimum Kişi Sayısı: (Derse katılacak en fazla kişi sayısıdır. Sınırsız ise 0 bırakabilirsiniz)</label>
+        <input type="number" name="max_capacity" id="max_capacity" [(ngModel)]="lessonPackage!.max_capacity" class="form-control text-small" 
+        placeholder="Seans ücretini yazınız">
+      </div>
+      <div class="form-group">
+        <label for="description">Açıklama:</label>
+        <input type="text" name="description" id="description" [(ngModel)]="lessonPackage!.description" class="form-control text-small">
+      </div>
+      <button type="submit" class="btn btn-default">{{buttonText}}</button>&nbsp;<span *ngIf="changeButtonVisibility"><button type="submit" (click)="resetForm()" class="btn btn-info px-4">Vazgeç</button></span>
+    </form>
+  </div>
+  <div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h4 class="card-title">{{currentLesson?.lesson_name}} Paket Listesi</h4>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-nowrap table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-dark font-medium">#</th>
+                        <th class="text-dark font-medium">Paket Adı</th>
+                        <th class="text-dark font-medium">Katılımcı Türü</th>
+                        <th class="text-dark font-medium">Paket Ücreti</th>
+                        <th class="text-dark font-medium">Durumu</th>
+                        <th class="text-dark font-medium">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let tr of lessonPackageList; index as i'>
+                        <td>
+                            {{ i + 1}}
+                        </td>
+                        <td>
+                            {{tr.package_name}}
+                        </td>
+                        <td>
+                          {{tr.participant_type?.participant_type_name}}
+                        </td>
+                        <td>
+                          {{tr.package_price}}
+                        </td>
+                        <td>
+                            {{tr.is_active ? 'Aktif' : 'Pasif' }}
+                        </td>
+                        <td>
+                            <a title="Sil" (click)="remove(tr._id!)">Sil</a> |  <a title="Paket Ekle" (click)="getById(tr._id!)">Detay</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

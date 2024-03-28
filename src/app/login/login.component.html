@@ -1,0 +1,46 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+          <div class="card-group" style=" margin: auto;
+          padding: 10px;">
+            <div class="card p-4" style="text-align: center;">
+              <img src="../../assets/img/brand/almula-logo.png" style=" display: block;
+              margin-left: auto;
+              margin-right: auto;" width="100" alt="">
+              <div class="card-body">
+                <form (ngSubmit)="login()" accept-charset="UTF-8">
+                  <h1>Schemula Yönetim Sistemi</h1>
+                  <p class="text-muted">Giriş</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-person-fill-lock"></i></span>
+                    </div>
+                    <input type="email" name="email" id="email" [(ngModel)]="user!.email" class="form-control small-text" placeholder="e-posta adresiniz" autocomplete="email" required>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    </div>
+                    <input type="password" name="password" id="password" [(ngModel)]="user!.password" class="form-control small-text" placeholder="parolanız" autocomplete="current-password" required>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <button type="submit" class="btn btn-primary px-4 small-text">Giriş</button>
+                    </div>
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4 text-right">
+                      <button type="button" class="btn btn-link px-0 small-text">Parolamı Unuttum</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

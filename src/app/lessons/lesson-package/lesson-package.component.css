@@ -1,0 +1,23 @@
+table thead tr th {
+    font-size: small;
+}
+
+table tbody tr td {
+    font-size: small;
+}
+
+button{
+    font-size: small;
+}
+
+label{
+    font-size: small;
+}
+
+.input-group-text{
+    font-size: small;
+}
+
+.text-small{
+    font-size: small;
+}
