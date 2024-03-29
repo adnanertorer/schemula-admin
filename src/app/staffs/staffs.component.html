@@ -1,0 +1,103 @@
+<div class="row" style="padding: 10px;">
+  <div class="card-body">
+    <h5>Yeni Personel Formu</h5>
+    <form (ngSubmit)="create()" accept-charset="UTF-8">
+      <div class="form-group">
+        <label for="participant_type_id">Personel Türü:</label>
+        <select class="form-control" id="staff_type" name="staff_type" (change)="setStaffType($event)" [(ngModel)]="model!.staff_type">
+          <option value="{{item._id}}" *ngFor="let item of staffTypeList">{{item.staff_type_name}}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="name">Adı:</label>
+        <input type="text" name="name" id="name" [(ngModel)]="model!.name" class="form-control text-small" 
+        placeholder="Personelin adınız yazınız" required>
+      </div>
+      <div class="form-group">
+        <label for="surname">Soyadı:</label>
+        <input type="text" name="surname" id="surname" [(ngModel)]="model!.surname" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="identity_number">Kimlik Numarası:</label>
+        <input type="number" name="identity_number" id="identity_number" [(ngModel)]="model!.identity_number" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="email">E-Posta:</label>
+        <input type="email" name="email" id="email" [(ngModel)]="model!.email" class="form-control text-small">
+      </div>
+      
+      <div class="form-group">
+        <label for="gsm">Gsm:</label>
+        <input type="tel" name="gsm" id="gsm" [(ngModel)]="model!.gsm" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="address">Adresi:</label>
+        <input type="text" name="address" id="address" [(ngModel)]="model!.address" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="payment_type_id">Maaş Tipi:</label>
+        <select class="form-control" id="payment_type_id" name="payment_type_id" (change)="setPaymentType($event)" [(ngModel)]="model!.payment_type_id">
+          <option value="{{item._id}}" *ngFor="let item of paymentTypeList">{{item.payment_type}}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="work_start_date">İşe Başlama Tarihi:</label>
+        <input type="date" name="work_start_date" id="work_start_date" [(ngModel)]="model!.work_start_date" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="work_finish_date">İşten Ayrılma Tarihi:</label>
+        <input type="date" name="work_finish_date" id="work_finish_date" [(ngModel)]="model!.work_finish_date" class="form-control text-small">
+      </div>
+      <div class="form-group">
+        <label for="birthday">Doğum Tarihi:</label>
+        <input type="date" name="birthday" id="birthday" [(ngModel)]="model!.birthday" class="form-control text-small">
+      </div>
+      <button type="submit" class="btn btn-default">{{buttonText}}</button>&nbsp;<span *ngIf="changeButtonVisibility"><button type="submit" (click)="resetForm()" class="btn btn-info px-4">Vazgeç</button></span>
+    </form>
+  </div>
+  <div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h4 class="card-title">Personel Listesi</h4>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-nowrap table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-dark font-medium">#</th>
+                        <th class="text-dark font-medium">Adı</th>
+                        <th class="text-dark font-medium">E-Posta</th>
+                        <th class="text-dark font-medium">Personel Türü</th>
+                        <th class="text-dark font-medium">Maaş Tipi</th>
+                        <th class="text-dark font-medium">Durumu</th>
+                        <th class="text-dark font-medium">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let tr of modelList; index as i'>
+                        <td>
+                            {{ i + 1}}
+                        </td>
+                        <td>
+                            {{tr.name}} {{tr.surname}}
+                        </td>
+                        <td>
+                          {{tr.email}}
+                        </td>
+                        <td>
+                          {{tr.staff_type.staff_type_name}}
+                        </td>
+                        <td>
+                          {{tr.payment_type.payment_type}}
+                        </td>
+                        <td>
+                            {{tr.is_active ? 'Aktif' : 'Pasif' }}
+                        </td>
+                        <td>
+                            <a title="Sil" (click)="remove(tr._id!)">Sil</a> |  <a title="Detay" (click)="getById(tr._id!)">Detay</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

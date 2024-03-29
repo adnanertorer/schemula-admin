@@ -35,7 +35,6 @@ export class CreateLessonComponent implements OnInit {
         this.ngOnInit();
       }
     }, (err)=>{
-      console.log(err);
     });
   }
 

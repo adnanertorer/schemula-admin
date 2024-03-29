@@ -36,10 +36,10 @@ export const Approutes: Routes = [
     import('./participant-types/participant-types.module').then((m) => m.ParticipantTypesModule),
   },
   {
-    path: 'about',
+    path: 'staffs',
     component: FullComponent,
     loadChildren: () =>
-      import('./about/about.module').then((m) => m.AboutModule),
+      import('./staffs/staffs.module').then((m) => m.StaffsModule),
   },
   {
     path: 'component',

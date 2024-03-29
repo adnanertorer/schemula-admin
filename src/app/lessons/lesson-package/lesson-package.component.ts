@@ -137,7 +137,6 @@ export class LessonPackageComponent implements OnInit {
   }
 
   setParticipantTypeId(event: any){
-    console.log(event.target.value);
     this.participantService.getById(event.target.value).subscribe((data)=>{
       if(data.success){
         this.lessonPackage!.participant_type = data.data as ParticipantTypeModel;
